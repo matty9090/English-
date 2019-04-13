@@ -36,16 +36,8 @@ function replace_word(word, i, text) {
                 else if(syns.noun != undefined && syns.noun.sim != undefined)
                     synonyms = syns.noun.sim;
 
-                if(synonyms != null) {
-                    var longest = '';
-
-                    synonyms.forEach(syn => {
-                        if(syn.length > longest.length)
-                            longest = syn;
-                    });
-
-                    text[i] = longest;
-                }
+                if(synonyms != null)
+                    text[i] = synonyms[Math.random() * synonyms.length];
 
                 resolve();
             } else if(err == 2)
@@ -57,7 +49,7 @@ function replace_word(word, i, text) {
 }
 
 function get_synonyms(word, callback) {
-    https.get(`https://words.bighugelabs.com/api/2/e56e46db9dbbb203ece79ab27cae9641/${word}/json`, (res) => {
+    https.get(`https://words.bighugelabs.com/api/2/{API_KEY}/${word}/json`, (res) => {
         let data = '';
     
         res.on('data', (d) => {
