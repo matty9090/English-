@@ -1,5 +1,6 @@
 # EnglishPlusPlus
 Replace your writing's words with random synonyms
 
-##Usage
+## Usage
+
 `node app.js text.txt`
